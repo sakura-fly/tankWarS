@@ -8,18 +8,15 @@ public class Tank extends MoveObj implements DrawObj {
 
 	public Tank() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Tank(int x, int y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void doDraw(Graphics g) {
 		g.setColor(color);
-		// TODO Auto-generated method stub
 		switch (direct) {
 		case Constants.UP:
 			g.fill3DRect(x, y, Constants.TANK_CATERPILLAR_WITH, Constants.TANK_CATERPILLAR_HIGHT, false);
@@ -82,5 +79,6 @@ public class Tank extends MoveObj implements DrawObj {
 			break;
 		}
 	}
+
 
 }

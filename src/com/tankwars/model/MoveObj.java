@@ -4,13 +4,15 @@ import java.awt.Color;
 
 import com.tankwars.util.Constants;
 
-public class MoveObj {
+public abstract class MoveObj {
 
 	protected int x;
 	protected int y;
 	protected int direct = Constants.DOWN;
 	protected int speed = Constants.SPEED_DEFAULT;
 	protected Color color;
+	protected int ox;
+	protected int oy;
 
 	public MoveObj() {
 		super();
@@ -62,7 +64,26 @@ public class MoveObj {
 		this.color = color;
 	}
 
+
+	public int getOx() {
+		return ox;
+	}
+
+	public void setOx(int ox) {
+		this.ox = ox;
+	}
+
+	public int getOy() {
+		return oy;
+	}
+
+	public void setOy(int oy) {
+		this.oy = oy;
+	}
+
 	public void move() {
+		System.out.println("speed=" + speed);
+		System.out.println(x + "," + y);
 		switch (direct) {
 		case Constants.UP:
 			y -= speed;
@@ -82,4 +103,5 @@ public class MoveObj {
 		}
 	}
 
+	
 }

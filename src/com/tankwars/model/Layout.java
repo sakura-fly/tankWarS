@@ -10,6 +10,7 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import com.tankwars.dd.Impact;
 import com.tankwars.util.Constants;
 
 public class Layout extends JPanel implements KeyListener {
@@ -22,6 +23,8 @@ public class Layout extends JPanel implements KeyListener {
 	ArrayList<Tank> tanks = new ArrayList<>();
 	ArrayList<Bullet> bullets = new ArrayList<>();
 
+	Impact i = new Impact();
+
 	Hero h = null;
 
 	private int pressKey;
@@ -32,7 +35,8 @@ public class Layout extends JPanel implements KeyListener {
 			t.setColor(Color.BLUE);
 			tanks.add(t);
 		}
-		h = new Hero(Constants.WITH_PANEL / 2, Constants.HIGHT_PANEL / 2);
+		// h = new Hero(Constants.WITH_PANEL / 2, Constants.HIGHT_PANEL / 2);
+		h = new Hero(12, 12);
 		h.setColor(Color.yellow);
 	}
 
@@ -53,18 +57,31 @@ public class Layout extends JPanel implements KeyListener {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				Thread th = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
-						h.move();
+						moveHero();
 						repaint();
 					}
+
 				});
 				th.start();
 			}
 		}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
+	}
+
+	private void moveHero() {
+
+		h.move();
+		if (i.out(h)) {
+			h.setX(h.getOx());
+			h.setY(h.getOy());
+		} else {
+			h.setOx(h.getX());
+			h.setOy(h.getY());
+		}
+
 	}
 
 	@Override
