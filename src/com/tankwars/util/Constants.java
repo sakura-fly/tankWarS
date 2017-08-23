@@ -29,7 +29,7 @@ public class Constants {
 	public static final int TANK_RADIUS = 10 * 2;// 圆
 	public static final int TANK_BODY_WITH = 10 * 2;// 身体
 	public static final int TANK_BODY_HIGHT = 20 * 2;
-	public static final int TANK_GUN_HIGHT = 20 * 2;
+//	public static final int TANK_GUN_HIGHT = 20 * 2;
 
 	public static final int TANK_DISTANCE = 50;// 初始坦克之间的距离
 
