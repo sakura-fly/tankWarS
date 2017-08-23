@@ -82,8 +82,6 @@ public abstract class MoveObj {
 	}
 
 	public void move() {
-		System.out.println("speed=" + speed);
-		System.out.println(x + "," + y);
 		switch (direct) {
 		case Constants.UP:
 			y -= speed;
