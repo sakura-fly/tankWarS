@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,7 +22,8 @@ public class Layout extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<Tank> tanks = new ArrayList<>();
-	ArrayList<Bullet> bullets = new ArrayList<>();
+	ArrayList<Bullet> hBullets;
+	ArrayList<Bullet> tBullets;
 
 	Impact i = new Impact();
 
@@ -38,7 +40,7 @@ public class Layout extends JPanel implements KeyListener {
 		Tank t = new Tank(150, 150);
 		t.setColor(Color.BLUE);
 		tanks.add(t);
-		
+
 		h = new Hero(Constants.WITH_PANEL / 2, Constants.HIGHT_PANEL / 2);
 		// h = new Hero(12, 12);
 		h.setColor(Color.yellow);
@@ -65,6 +67,7 @@ public class Layout extends JPanel implements KeyListener {
 
 					@Override
 					public void run() {
+						sunandsteel();
 						moveHero();
 						repaint();
 					}
@@ -73,6 +76,15 @@ public class Layout extends JPanel implements KeyListener {
 				th.start();
 			}
 		}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
+	}
+	
+	//填装弹药
+
+	private void sunandsteel() {
+		for (Iterator iterator = hBullets.iterator(); iterator.hasNext();) {
+			Bullet bullet = (Bullet) iterator.next();
+			
+		}
 	}
 
 	private void moveHero() {
