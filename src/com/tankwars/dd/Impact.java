@@ -16,4 +16,14 @@ public class Impact {
 		return m.getX() < 0 || m.getY() < 0 || m.getX() > layout.getWidth() || m.getY() > layout.getHeight();
 	}
 
+	public boolean peng(Tank i, Tank a) {
+
+		return i.getX() > a.getX() - Constants.TANK_CATERPILLAR_HIGHT
+				&& i.getX() < a.getX() + Constants.TANK_CATERPILLAR_HIGHT && i.getY() > a.getY() - Constants.TANK_CATERPILLAR_HIGHT
+				&& i.getY() < a.getY() + Constants.TANK_CATERPILLAR_HIGHT
+				|| a.getX() > i.getX() - Constants.TANK_CATERPILLAR_HIGHT && a.getX() < i.getX() + Constants.TANK_CATERPILLAR_HIGHT
+						&& a.getY() > i.getY() - Constants.TANK_CATERPILLAR_HIGHT
+						&& a.getY() < i.getY() + Constants.TANK_CATERPILLAR_HIGHT;
+	};
+
 }

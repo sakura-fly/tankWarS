@@ -35,6 +35,10 @@ public class Layout extends JPanel implements KeyListener {
 			t.setColor(Color.BLUE);
 			tanks.add(t);
 		}
+		Tank t = new Tank(150, 150);
+		t.setColor(Color.BLUE);
+		tanks.add(t);
+		
 		h = new Hero(Constants.WITH_PANEL / 2, Constants.HIGHT_PANEL / 2);
 		// h = new Hero(12, 12);
 		h.setColor(Color.yellow);
@@ -74,7 +78,14 @@ public class Layout extends JPanel implements KeyListener {
 	private void moveHero() {
 
 		h.move();
-		if (i.out(h, this)) {
+		boolean p = false;
+		for (int i = 0; i < tanks.size(); i++) {
+			if (this.i.peng(h, tanks.get(i))) {
+				p = true;
+				break;
+			}
+		}
+		if (i.out(h, this) || p) {
 			h.setX(h.getOx());
 			h.setY(h.getOy());
 		} else {
