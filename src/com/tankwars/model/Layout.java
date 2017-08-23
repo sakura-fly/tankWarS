@@ -67,7 +67,7 @@ public class Layout extends JPanel implements KeyListener {
 
 					@Override
 					public void run() {
-						sunandsteel();
+						shoot();
 						moveHero();
 						repaint();
 					}
@@ -78,9 +78,9 @@ public class Layout extends JPanel implements KeyListener {
 		}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
 	}
 	
-	//填装弹药
+	//发射弹药
 
-	private void sunandsteel() {
+	private void shoot() {
 		for (Iterator iterator = hBullets.iterator(); iterator.hasNext();) {
 			Bullet bullet = (Bullet) iterator.next();
 			
