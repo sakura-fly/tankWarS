@@ -33,8 +33,8 @@ public class Constants {
 
 	public static final int TANK_DISTANCE = 90;// 初始坦克之间的距离
 
-	public static final int TIMER_DELAY = 10;
-	public static final int TIMER_PERIOD = 10;
+	public static final int TIMER_DELAY = 20;
+	public static final int TIMER_PERIOD = 20;
 
 	
 

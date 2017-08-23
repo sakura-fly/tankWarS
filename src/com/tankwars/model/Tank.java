@@ -1,5 +1,6 @@
 package com.tankwars.model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import com.tankwars.util.Constants;
@@ -38,9 +39,11 @@ public class Tank extends MoveObj implements DrawObj {
 	
 	public Bullet shot() {
 		Bullet b = new Bullet(gunX, gunY);
+		b.setDirect(direct);
+		b.setColor(Color.red);
 		return b;
 	}
-	
+	    
 	@Override
 	public void doDraw(Graphics g) {
 		g.setColor(color);

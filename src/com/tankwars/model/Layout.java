@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,9 +20,11 @@ public class Layout extends JPanel implements KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private int num = 0;
+
 	ArrayList<Tank> tanks = new ArrayList<>();
-	ArrayList<Bullet> hBullets;
-	ArrayList<Bullet> tBullets;
+	ArrayList<Bullet> hBullets = new ArrayList<>();
+	ArrayList<Bullet> tBullets = new ArrayList<>();
 
 	Impact i = new Impact();
 
@@ -50,10 +51,19 @@ public class Layout extends JPanel implements KeyListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.fillRect(0, 0, Constants.WITH_PANEL, Constants.HIGHT_PANEL);
+		// 话我
 		h.doDraw(g);
+		// 对面的
 		for (int i = 0; i < tanks.size(); i++) {
 			tanks.get(i).doDraw(g);
 		}
+		// 我的子弹
+		for (int i = 0; i < hBullets.size(); i++) {
+			Bullet hb = hBullets.get(i);
+			hb.move();
+			hb.doDraw(g);
+		}
+		// 对面的子弹
 	}
 
 	public void action() {
@@ -63,6 +73,7 @@ public class Layout extends JPanel implements KeyListener {
 
 			@Override
 			public void run() {
+				num++;
 				Thread th = new Thread(new Runnable() {
 
 					@Override
@@ -77,13 +88,23 @@ public class Layout extends JPanel implements KeyListener {
 			}
 		}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
 	}
-	
-	//发射弹药
+
+	// 发射弹药
 
 	private void shoot() {
-		for (Iterator iterator = hBullets.iterator(); iterator.hasNext();) {
-			Bullet bullet = (Bullet) iterator.next();
-			
+		// 我发子弹
+		if (h.isShot) {
+			if (num % 10 == 3) {
+				hBullets.add(h.shot());
+			}
+
+		}
+		// 对面的发子弹
+		for (int i = 0; i < tanks.size(); i++) {
+			Tank t = tanks.get(i);
+			if ((int) (Math.random() * 10) % 10 == 3) {
+				tBullets.add(t.shot());
+			}
 		}
 	}
 
@@ -131,9 +152,7 @@ public class Layout extends JPanel implements KeyListener {
 			pressKey = e.getKeyCode();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_J) {
-			// // 判断玩家是否按下j键
-			// if (this.hero.ss.size() <= 4)
-			// this.hero.shotMe();
+			h.isShot = true;
 		}
 	}
 

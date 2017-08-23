@@ -7,9 +7,8 @@ import com.tankwars.util.Constants;
 
 public class Run {
 
-
 	public static void main(String[] args) {
-		
+
 		Layout ly = new Layout();
 		JFrame jf = new JFrame(Constants.TITILE);
 		ly.setSize(Constants.WITH_PANEL, Constants.HIGHT_PANEL);
@@ -19,7 +18,7 @@ public class Run {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setLocationRelativeTo(null);
 		jf.setVisible(true);
-//		jf.setResizable(false);
+		jf.setResizable(false);
 		jf.addKeyListener(ly);
 		ly.action();
 	}
