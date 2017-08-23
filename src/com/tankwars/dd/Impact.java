@@ -17,11 +17,12 @@ public class Impact {
 	}
 
 	public boolean peng(Tank i, Tank a) {
-
 		return i.getX() > a.getX() - Constants.TANK_CATERPILLAR_HIGHT
-				&& i.getX() < a.getX() + Constants.TANK_CATERPILLAR_HIGHT && i.getY() > a.getY() - Constants.TANK_CATERPILLAR_HIGHT
+				&& i.getX() < a.getX() + Constants.TANK_CATERPILLAR_HIGHT
+				&& i.getY() > a.getY() - Constants.TANK_CATERPILLAR_HIGHT
 				&& i.getY() < a.getY() + Constants.TANK_CATERPILLAR_HIGHT
-				|| a.getX() > i.getX() - Constants.TANK_CATERPILLAR_HIGHT && a.getX() < i.getX() + Constants.TANK_CATERPILLAR_HIGHT
+				|| a.getX() > i.getX() - Constants.TANK_CATERPILLAR_HIGHT
+						&& a.getX() < i.getX() + Constants.TANK_CATERPILLAR_HIGHT
 						&& a.getY() > i.getY() - Constants.TANK_CATERPILLAR_HIGHT
 						&& a.getY() < i.getY() + Constants.TANK_CATERPILLAR_HIGHT;
 	};
