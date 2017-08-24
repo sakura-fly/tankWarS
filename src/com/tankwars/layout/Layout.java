@@ -64,9 +64,9 @@ public class Layout extends JPanel implements KeyListener {
 		paintTanks(g);
 
 		// 我的子弹
-		paintBullet(g,hBullets);
+		paintBullet(g, hBullets);
 		// 对面的子弹
-		paintBullet(g,tBullets);
+		paintBullet(g, tBullets);
 	}
 
 	private void paintHero(Graphics g) {
@@ -97,8 +97,8 @@ public class Layout extends JPanel implements KeyListener {
 			}
 		}
 	}
-	
-	private void paintBullet(Graphics g,ArrayList<Bullet> bullets) {
+
+	private void paintBullet(Graphics g, ArrayList<Bullet> bullets) {
 		for (int i = 0; i < bullets.size(); i++) {
 			Bullet hb = bullets.get(i);
 			hb.move();
@@ -108,8 +108,6 @@ public class Layout extends JPanel implements KeyListener {
 			}
 		}
 	}
-
-
 
 	public void action() {
 
@@ -158,14 +156,6 @@ public class Layout extends JPanel implements KeyListener {
 		ai.move(t);
 		ai.shot(t);
 		boolean p = false;
-		// for (int i = 0; i < tanks.size(); i++) {
-		// if (this.i.peng(t, tanks.get(i))) {
-		// p = true;
-		// break;
-		// }
-		// }
-		t.setOx(t.getX());
-		t.setOy(t.getY());
 		if (i.out(t, this) || p) {
 			t.setDirect(-t.getDirect());
 		}
@@ -174,24 +164,32 @@ public class Layout extends JPanel implements KeyListener {
 	private void moveHero() {
 
 		h.move();
-		boolean p = false;
+		if (i.out(h, this)) {
+			h.rMove();
+		}
 		for (int i = 0; i < tanks.size(); i++) {
 			Tank t = tanks.get(i);
 			if (this.i.peng(h, t)) {
-				p = true;
-				t.setX(t.getOx());
-				t.setY(t.getOy());
+				h.rMove();
 			}
 		}
-		if (i.out(h, this) || p) {
-			h.setX(h.getOx());
-			h.setY(h.getOy());
-		} else {
-			h.setOx(h.getX());
-			h.setOy(h.getY());
-		}
+	// for (int i = 0; i < tanks.size(); i++) {
+	// Tank t = tanks.get(i);
+	// if (this.i.peng(h, t)) {
+	// t.setX(t.getOx());
+	// t.setY(t.getOy());
+	// }
+	// }
 
+	// if (i.out(h, this) || p) {
+	// h.setX(h.getOx());
+	// h.setY(h.getOy());
+	// } else {
+	// h.setOx(h.getX());
+	// h.setOy(h.getY());
 	}
+
+	// }
 
 	@Override
 	public void keyTyped(KeyEvent e) {

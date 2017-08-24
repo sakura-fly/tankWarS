@@ -12,8 +12,8 @@ public abstract class MoveObj {
 	protected int oldDirect = direct;
 	protected int speed = Constants.SPEED_DEFAULT;
 	protected Color color;
-	protected int ox;
-	protected int oy;
+//	protected int ox;
+//	protected int oy;
 	protected boolean isMoving = true;
 
 	public MoveObj() {
@@ -71,21 +71,21 @@ public abstract class MoveObj {
 		this.color = color;
 	}
 
-	public int getOx() {
-		return ox;
-	}
-
-	public void setOx(int ox) {
-		this.ox = ox;
-	}
-
-	public int getOy() {
-		return oy;
-	}
-
-	public void setOy(int oy) {
-		this.oy = oy;
-	}
+//	public int getOx() {
+//		return ox;
+//	}
+//
+//	public void setOx(int ox) {
+//		this.ox = ox;
+//	}
+//
+//	public int getOy() {
+//		return oy;
+//	}
+//
+//	public void setOy(int oy) {
+//		this.oy = oy;
+//	}
 
 	public boolean isMoving() {
 		return isMoving;
