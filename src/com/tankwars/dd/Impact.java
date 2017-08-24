@@ -1,7 +1,7 @@
 package com.tankwars.dd;
 
+import com.tankwars.layout.Layout;
 import com.tankwars.model.Bullet;
-import com.tankwars.model.Layout;
 import com.tankwars.model.Tank;
 import com.tankwars.util.Constants;
 

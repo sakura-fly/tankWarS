@@ -1,4 +1,4 @@
-package com.tankwars.model;
+package com.tankwars.layout;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,6 +11,9 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 import com.tankwars.dd.Impact;
+import com.tankwars.model.Bullet;
+import com.tankwars.model.Hero;
+import com.tankwars.model.Tank;
 import com.tankwars.util.Constants;
 
 public class Layout extends JPanel implements KeyListener {
@@ -36,6 +39,7 @@ public class Layout extends JPanel implements KeyListener {
 		for (int i = 0; i < Constants.TARK_NUM_DEFAULT; i++) {
 			Tank t = new Tank((i + 1) * Constants.TANK_DISTANCE, 0);
 			t.setColor(Color.BLUE);
+			// t.setShot(true);
 			tanks.add(t);
 		}
 		Tank t = new Tank(150, 150);
@@ -52,14 +56,38 @@ public class Layout extends JPanel implements KeyListener {
 		super.paint(g);
 		g.fillRect(0, 0, Constants.WITH_PANEL, Constants.HIGHT_PANEL);
 		// 话我
-		h.doDraw(g);
-		moveHero();
+		pauntHero(g);
 		// 对面的
 		paintTanks(g);
 
 		// 我的子弹
 		paintHBullet(g);
 		// 对面的子弹
+		paintTBullet(g);
+	}
+
+	private void pauntHero(Graphics g) {
+		h.doDraw(g);
+		moveHero();
+		for (int i = 0; i < tBullets.size(); i++) {
+			Bullet b = tBullets.get(i);
+			if (this.i.duang(b, h)) {
+				System.out.println("我要死了!!!!!!!!");
+				tBullets.remove(b);
+			}
+		}
+
+	}
+
+	private void paintTBullet(Graphics g) {
+		for (int i = 0; i < tBullets.size(); i++) {
+			Bullet hb = tBullets.get(i);
+			hb.move();
+			hb.doDraw(g);
+			if (this.i.out(hb, this)) {
+				tBullets.remove(hb);
+			}
+		}
 	}
 
 	private void paintTanks(Graphics g) {
@@ -68,11 +96,11 @@ public class Layout extends JPanel implements KeyListener {
 			t.doDraw(g);
 			for (int j = 0; j < hBullets.size(); j++) {
 				Bullet b = hBullets.get(j);
-				if (this.i.duang(b, t)){
+				if (this.i.duang(b, t)) {
 					hBullets.remove(b);
 					tanks.remove(t);
 				}
-					
+
 			}
 		}
 	}
@@ -96,6 +124,7 @@ public class Layout extends JPanel implements KeyListener {
 			@Override
 			public void run() {
 				num++;
+				System.out.println("dz=" + tBullets.size());
 				Thread th = new Thread(new Runnable() {
 
 					@Override
@@ -115,16 +144,14 @@ public class Layout extends JPanel implements KeyListener {
 
 	private void shoot() {
 		// 我发子弹
-		if (h.isShot) {
-			if (num % Constants.BULLET_JG == 1) {
-				hBullets.add(h.shot());
-			}
-
+		if (num % Constants.BULLET_JG == 1 && h.isShot()) {
+			hBullets.add(h.shot());
 		}
+
 		// 对面的发子弹
 		for (int i = 0; i < tanks.size(); i++) {
 			Tank t = tanks.get(i);
-			if ((int) (Math.random() * 10) % 10 == 3) {
+			if (num % Constants.BULLET_JG == 1 && t.isShot()) {
 				tBullets.add(t.shot());
 			}
 		}
@@ -174,7 +201,7 @@ public class Layout extends JPanel implements KeyListener {
 			pressKey = e.getKeyCode();
 		}
 		if (e.getKeyCode() == KeyEvent.VK_J) {
-			h.isShot = true;
+			h.setShot(true);
 		}
 	}
 

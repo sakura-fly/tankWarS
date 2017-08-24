@@ -2,7 +2,7 @@ package com.tankwars.run;
 
 import javax.swing.JFrame;
 
-import com.tankwars.model.Layout;
+import com.tankwars.layout.Layout;
 import com.tankwars.util.Constants;
 
 public class Run {
