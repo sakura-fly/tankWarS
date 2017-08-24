@@ -77,7 +77,6 @@ public class Layout extends JPanel implements KeyListener {
 			@Override
 			public void run() {
 				num++;
-				System.out.println("我的子弹正在飞的:" + hBullets.size());
 				Thread th = new Thread(new Runnable() {
 
 					@Override
@@ -164,7 +163,9 @@ public class Layout extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		if (pressKey == e.getKeyCode())
 			h.setMoving(false);
-
+		if (e.getKeyCode() == KeyEvent.VK_J) {
+			h.isShot = false;
+		}
 	}
 
 }
