@@ -27,4 +27,9 @@ public class Impact {
 						&& a.getY() < i.getY() + Constants.TANK_CATERPILLAR_HIGHT;
 	};
 
+	public boolean duang(Bullet b, Tank t) {
+		return b.getX() > t.getX() && b.getY() > t.getY() && b.getX() < t.getX() + Constants.TANK_CATERPILLAR_HIGHT
+				&& b.getY() < t.getY() + Constants.TANK_CATERPILLAR_HIGHT;
+	}
+
 }

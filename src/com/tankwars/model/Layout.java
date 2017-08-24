@@ -53,11 +53,31 @@ public class Layout extends JPanel implements KeyListener {
 		g.fillRect(0, 0, Constants.WITH_PANEL, Constants.HIGHT_PANEL);
 		// 话我
 		h.doDraw(g);
+		moveHero();
 		// 对面的
-		for (int i = 0; i < tanks.size(); i++) {
-			tanks.get(i).doDraw(g);
-		}
+		paintTanks(g);
+
 		// 我的子弹
+		paintHBullet(g);
+		// 对面的子弹
+	}
+
+	private void paintTanks(Graphics g) {
+		for (int i = 0; i < tanks.size(); i++) {
+			Tank t = tanks.get(i);
+			t.doDraw(g);
+			for (int j = 0; j < hBullets.size(); j++) {
+				Bullet b = hBullets.get(j);
+				if (this.i.duang(b, t)){
+					hBullets.remove(b);
+					tanks.remove(t);
+				}
+					
+			}
+		}
+	}
+
+	private void paintHBullet(Graphics g) {
 		for (int i = 0; i < hBullets.size(); i++) {
 			Bullet hb = hBullets.get(i);
 			hb.move();
@@ -66,7 +86,6 @@ public class Layout extends JPanel implements KeyListener {
 				hBullets.remove(hb);
 			}
 		}
-		// 对面的子弹
 	}
 
 	public void action() {
@@ -82,7 +101,7 @@ public class Layout extends JPanel implements KeyListener {
 					@Override
 					public void run() {
 						shoot();
-						moveHero();
+
 						repaint();
 					}
 
@@ -163,9 +182,9 @@ public class Layout extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		if (pressKey == e.getKeyCode())
 			h.setMoving(false);
-		if (e.getKeyCode() == KeyEvent.VK_J) {
-			h.isShot = false;
-		}
+		// if (e.getKeyCode() == KeyEvent.VK_J) {
+		// h.isShot = false;
+		// }
 	}
 
 }
