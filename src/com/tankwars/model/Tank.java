@@ -10,7 +10,7 @@ public class Tank extends MoveObj implements DrawObj {
 	int gunX;
 	int gunY;
 	boolean isShot;
-	protected boolean isMoving = true;
+
 
 	public boolean isShot() {
 		return isShot;
@@ -28,13 +28,7 @@ public class Tank extends MoveObj implements DrawObj {
 		this.gunY = gunY;
 	}
 
-	public boolean isMoving() {
-		return isMoving;
-	}
-
-	public void setMoving(boolean isMoving) {
-		this.isMoving = isMoving;
-	}
+	
 
 	public Tank() {
 		super();

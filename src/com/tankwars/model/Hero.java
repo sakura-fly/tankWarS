@@ -5,7 +5,6 @@ import com.tankwars.util.Constants;
 public class Hero extends Tank {
 
 	private int bulletNum = Constants.BULLET_NUM_DEFAULT;
-	
 
 	{
 		direct = Constants.UP;
@@ -29,11 +28,4 @@ public class Hero extends Tank {
 		this.bulletNum = bulletNum;
 	}
 
-
-
-	@Override
-	public void move() {
-		if (isMoving)
-			super.move();
-	}
 }

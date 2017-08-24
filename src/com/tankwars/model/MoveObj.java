@@ -14,6 +14,7 @@ public abstract class MoveObj {
 	protected Color color;
 	protected int ox;
 	protected int oy;
+	protected boolean isMoving = true;
 
 	public MoveObj() {
 		super();
@@ -86,25 +87,36 @@ public abstract class MoveObj {
 		this.oy = oy;
 	}
 
-	public void move() {
-		switch (direct) {
-		case Constants.UP:
-			y -= speed;
-			break;
-		case Constants.DOWN:
-			y += speed;
-			break;
-		case Constants.LIFT:
-			x -= speed;
-			break;
-		case Constants.RIGHT:
-			x += speed;
-			break;
+	public boolean isMoving() {
+		return isMoving;
+	}
 
-		default:
-			
-			break;
+	public void setMoving(boolean isMoving) {
+		this.isMoving = isMoving;
+	}
+
+	public void move() {
+		if (isMoving) {
+			switch (direct) {
+			case Constants.UP:
+				y -= speed;
+				break;
+			case Constants.DOWN:
+				y += speed;
+				break;
+			case Constants.LIFT:
+				x -= speed;
+				break;
+			case Constants.RIGHT:
+				x += speed;
+				break;
+
+			default:
+
+				break;
+			}
 		}
+
 	}
 
 }
