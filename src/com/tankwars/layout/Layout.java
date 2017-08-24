@@ -25,7 +25,7 @@ public class Layout extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	private int num = 0;
-	// private int stat =
+	public static int stat = Constants.GAME_STAT_READY;
 
 	ArrayList<Tank> tanks = new ArrayList<>();
 	ArrayList<Bullet> hBullets = new ArrayList<>();
@@ -117,17 +117,18 @@ public class Layout extends JPanel implements KeyListener {
 
 				@Override
 				public void run() {
-					num = (++num % 100000000);
 					Thread th = new Thread(new Runnable() {
 
 						@Override
 						public void run() {
+							num = (++num % 100000000);
 							shoot();
 							repaint();
 						}
 
 					});
-					th.start();
+					if (stat == Constants.GAME_STAT_LIVE)
+						th.start();
 				}
 			}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
 		} catch (Exception e) {
