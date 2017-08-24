@@ -64,9 +64,9 @@ public class Layout extends JPanel implements KeyListener {
 		paintTanks(g);
 
 		// 我的子弹
-		paintHBullet(g);
+		paintBullet(g,hBullets);
 		// 对面的子弹
-		paintTBullet(g);
+		paintBullet(g,tBullets);
 	}
 
 	private void paintHero(Graphics g) {
@@ -80,17 +80,6 @@ public class Layout extends JPanel implements KeyListener {
 			}
 		}
 
-	}
-
-	private void paintTBullet(Graphics g) {
-		for (int i = 0; i < tBullets.size(); i++) {
-			Bullet hb = tBullets.get(i);
-			hb.move();
-			hb.doDraw(g);
-			if (this.i.out(hb, this)) {
-				tBullets.remove(hb);
-			}
-		}
 	}
 
 	private void paintTanks(Graphics g) {
@@ -108,17 +97,19 @@ public class Layout extends JPanel implements KeyListener {
 			}
 		}
 	}
-
-	private void paintHBullet(Graphics g) {
-		for (int i = 0; i < hBullets.size(); i++) {
-			Bullet hb = hBullets.get(i);
+	
+	private void paintBullet(Graphics g,ArrayList<Bullet> bullets) {
+		for (int i = 0; i < bullets.size(); i++) {
+			Bullet hb = bullets.get(i);
 			hb.move();
 			hb.doDraw(g);
 			if (this.i.out(hb, this)) {
-				hBullets.remove(hb);
+				bullets.remove(hb);
 			}
 		}
 	}
+
+
 
 	public void action() {
 
@@ -173,9 +164,10 @@ public class Layout extends JPanel implements KeyListener {
 		// break;
 		// }
 		// }
+		t.setOx(t.getX());
+		t.setOy(t.getY());
 		if (i.out(t, this) || p) {
 			t.setDirect(-t.getDirect());
-		} else {
 		}
 	}
 
