@@ -5,10 +5,11 @@ import com.tankwars.util.Constants;
 public class Hero extends Tank {
 
 	private int bulletNum = Constants.BULLET_NUM_DEFAULT;
-	private boolean isMoving = false;
+	
 
 	{
 		direct = Constants.UP;
+		isMoving = false;
 	}
 
 	public Hero() {
@@ -28,13 +29,7 @@ public class Hero extends Tank {
 		this.bulletNum = bulletNum;
 	}
 
-	public boolean isMoving() {
-		return isMoving;
-	}
 
-	public void setMoving(boolean isMoving) {
-		this.isMoving = isMoving;
-	}
 
 	@Override
 	public void move() {

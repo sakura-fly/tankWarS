@@ -9,6 +9,7 @@ public abstract class MoveObj {
 	protected int x;
 	protected int y;
 	protected int direct = Constants.DOWN;
+	protected int oldDirect = direct;
 	protected int speed = Constants.SPEED_DEFAULT;
 	protected Color color;
 	protected int ox;
@@ -45,7 +46,12 @@ public abstract class MoveObj {
 	}
 
 	public void setDirect(int direct) {
+		this.oldDirect = this.direct;
 		this.direct = direct;
+	}
+
+	public int getOldDirect() {
+		return oldDirect;
 	}
 
 	public int getSpeed() {
@@ -63,7 +69,6 @@ public abstract class MoveObj {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-
 
 	public int getOx() {
 		return ox;
@@ -97,9 +102,9 @@ public abstract class MoveObj {
 			break;
 
 		default:
+			
 			break;
 		}
 	}
 
-	
 }

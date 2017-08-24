@@ -10,6 +10,7 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import com.tankwars.dd.AI;
 import com.tankwars.dd.Impact;
 import com.tankwars.model.Bullet;
 import com.tankwars.model.Hero;
@@ -30,6 +31,7 @@ public class Layout extends JPanel implements KeyListener {
 	ArrayList<Bullet> tBullets = new ArrayList<>();
 
 	Impact i = new Impact();
+	AI ai = new AI();
 
 	Hero h = null;
 
@@ -56,7 +58,7 @@ public class Layout extends JPanel implements KeyListener {
 		super.paint(g);
 		g.fillRect(0, 0, Constants.WITH_PANEL, Constants.HIGHT_PANEL);
 		// 话我
-		pauntHero(g);
+		paintHero(g);
 		// 对面的
 		paintTanks(g);
 
@@ -66,7 +68,7 @@ public class Layout extends JPanel implements KeyListener {
 		paintTBullet(g);
 	}
 
-	private void pauntHero(Graphics g) {
+	private void paintHero(Graphics g) {
 		h.doDraw(g);
 		moveHero();
 		for (int i = 0; i < tBullets.size(); i++) {
@@ -94,6 +96,7 @@ public class Layout extends JPanel implements KeyListener {
 		for (int i = 0; i < tanks.size(); i++) {
 			Tank t = tanks.get(i);
 			t.doDraw(g);
+			moveTank(t);
 			for (int j = 0; j < hBullets.size(); j++) {
 				Bullet b = hBullets.get(j);
 				if (this.i.duang(b, t)) {
@@ -124,13 +127,11 @@ public class Layout extends JPanel implements KeyListener {
 			@Override
 			public void run() {
 				num++;
-				System.out.println("dz=" + tBullets.size());
 				Thread th = new Thread(new Runnable() {
 
 					@Override
 					public void run() {
 						shoot();
-
 						repaint();
 					}
 
@@ -157,14 +158,34 @@ public class Layout extends JPanel implements KeyListener {
 		}
 	}
 
+	private void moveTank(Tank t) {
+		ai.move(t);
+		boolean p = false;
+		// for (int i = 0; i < tanks.size(); i++) {
+		// if (this.i.peng(t, tanks.get(i))) {
+		// p = true;
+		// break;
+		// }
+		// }
+		if (i.out(t, this) || p) {
+			t.setX(t.getOx());
+			t.setY(t.getOy());
+		} else {
+			t.setOx(t.getX());
+			t.setOy(t.getY());
+		}
+	}
+
 	private void moveHero() {
 
 		h.move();
 		boolean p = false;
 		for (int i = 0; i < tanks.size(); i++) {
-			if (this.i.peng(h, tanks.get(i))) {
+			Tank t = tanks.get(i);
+			if (this.i.peng(h, t)) {
 				p = true;
-				break;
+				t.setX(t.getOx());
+				t.setY(t.getOy());
 			}
 		}
 		if (i.out(h, this) || p) {
@@ -200,7 +221,7 @@ public class Layout extends JPanel implements KeyListener {
 			h.setDirect(Constants.LIFT);
 			pressKey = e.getKeyCode();
 		}
-		if (e.getKeyCode() == KeyEvent.VK_J) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			h.setShot(true);
 		}
 	}
@@ -209,7 +230,7 @@ public class Layout extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		if (pressKey == e.getKeyCode())
 			h.setMoving(false);
-		// if (e.getKeyCode() == KeyEvent.VK_J) {
+		// if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 		// h.isShot = false;
 		// }
 	}
