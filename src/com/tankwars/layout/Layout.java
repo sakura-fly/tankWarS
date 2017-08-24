@@ -86,15 +86,15 @@ public class Layout extends JPanel implements KeyListener {
 		for (int i = 0; i < tanks.size(); i++) {
 			Tank t = tanks.get(i);
 			t.doDraw(g);
-			moveTank(t);
-			for (int j = 0; j < hBullets.size(); j++) {
-				Bullet b = hBullets.get(j);
-				if (this.i.duang(b, t)) {
-					hBullets.remove(b);
-					tanks.remove(t);
-				}
-
-			}
+			// moveTank(t);
+			// for (int j = 0; j < hBullets.size(); j++) {
+			// Bullet b = hBullets.get(j);
+			// if (this.i.duang(b, t)) {
+			// hBullets.remove(b);
+			// tanks.remove(t);
+			// }
+			//
+			// }
 		}
 	}
 
@@ -117,7 +117,7 @@ public class Layout extends JPanel implements KeyListener {
 
 				@Override
 				public void run() {
-					num++;
+					num = (++num % 100000000);
 					Thread th = new Thread(new Runnable() {
 
 						@Override
@@ -173,20 +173,20 @@ public class Layout extends JPanel implements KeyListener {
 				h.rMove();
 			}
 		}
-	// for (int i = 0; i < tanks.size(); i++) {
-	// Tank t = tanks.get(i);
-	// if (this.i.peng(h, t)) {
-	// t.setX(t.getOx());
-	// t.setY(t.getOy());
-	// }
-	// }
+		// for (int i = 0; i < tanks.size(); i++) {
+		// Tank t = tanks.get(i);
+		// if (this.i.peng(h, t)) {
+		// t.setX(t.getOx());
+		// t.setY(t.getOy());
+		// }
+		// }
 
-	// if (i.out(h, this) || p) {
-	// h.setX(h.getOx());
-	// h.setY(h.getOy());
-	// } else {
-	// h.setOx(h.getX());
-	// h.setOy(h.getY());
+		// if (i.out(h, this) || p) {
+		// h.setX(h.getOx());
+		// h.setY(h.getOy());
+		// } else {
+		// h.setOx(h.getX());
+		// h.setOy(h.getY());
 	}
 
 	// }
