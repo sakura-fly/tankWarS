@@ -62,6 +62,9 @@ public class Layout extends JPanel implements KeyListener {
 			Bullet hb = hBullets.get(i);
 			hb.move();
 			hb.doDraw(g);
+			if (this.i.out(hb, this)) {
+				hBullets.remove(hb);
+			}
 		}
 		// 对面的子弹
 	}
@@ -74,6 +77,7 @@ public class Layout extends JPanel implements KeyListener {
 			@Override
 			public void run() {
 				num++;
+				System.out.println("我的子弹正在飞的:" + hBullets.size());
 				Thread th = new Thread(new Runnable() {
 
 					@Override
@@ -94,7 +98,7 @@ public class Layout extends JPanel implements KeyListener {
 	private void shoot() {
 		// 我发子弹
 		if (h.isShot) {
-			if (num % 10 == 3) {
+			if (num % Constants.BULLET_JG == 1) {
 				hBullets.add(h.shot());
 			}
 

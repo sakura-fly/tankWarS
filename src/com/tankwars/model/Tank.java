@@ -41,6 +41,7 @@ public class Tank extends MoveObj implements DrawObj {
 		Bullet b = new Bullet(gunX, gunY);
 		b.setDirect(direct);
 		b.setColor(Color.red);
+		//b.setColor(Color.getColor("#66ccff"));
 		return b;
 	}
 	    

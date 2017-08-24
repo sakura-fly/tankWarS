@@ -29,6 +29,7 @@ public class Bullet extends MoveObj implements DrawObj {
 
 	@Override
 	public void doDraw(Graphics g) {
+		g.setColor(color);
 		g.draw3DRect(x, y, 2, 2, false);
 	}
 
