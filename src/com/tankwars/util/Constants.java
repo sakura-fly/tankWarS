@@ -5,10 +5,10 @@ public class Constants {
 	public static final String TITILE = "坦克大战";
 
 	// 方向
-	public static final int UP = 0;
-	public static final int DOWN = 1;
+	public static final int UP = 1;
+	public static final int DOWN = -1;
 	public static final int LIFT = 2;
-	public static final int RIGHT = 3;
+	public static final int RIGHT = -2;
 
 	// 速度
 	public static final int SPEED_DEFAULT = 1;// 默认
@@ -37,6 +37,10 @@ public class Constants {
 	public static final int TIMER_PERIOD = 10;
 	
 	public static final int BULLET_JG = 20;
+	
+	public static final int TANK_SHOT = BULLET_JG * 10;
+	
+	
 
 	
 

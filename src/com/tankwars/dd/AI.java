@@ -5,8 +5,8 @@ import com.tankwars.util.Constants;
 
 public class AI {
 
-	public int moveNum = -1;
-	public int shotNum;
+	private int moveNum = -1;
+	private int shotNum = -1;
 
 	public void move(Tank t) {
 		moveNum--;
@@ -18,8 +18,20 @@ public class AI {
 		if (moveNum > 0 && t.isMoving()) {
 			t.move();
 		}
+	}
 
-
+	public void shot(Tank t) {
+		shotNum--;
+		if(shotNum < 0){
+			moveNum = (int) (Math.random() * Constants.TANK_SHOT);
+			t.setShot((int) (Math.random() * 2) == 1);
+		}
+//		if(shotNum > 0 && t.isShot()){
+//			t.setShot(true);
+//		} else {
+//			t.setShot(false);
+//		}
+		
 	}
 
 }

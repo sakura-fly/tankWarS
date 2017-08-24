@@ -25,6 +25,7 @@ public class Layout extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	private int num = 0;
+	// private int stat =
 
 	ArrayList<Tank> tanks = new ArrayList<>();
 	ArrayList<Bullet> hBullets = new ArrayList<>();
@@ -122,23 +123,27 @@ public class Layout extends JPanel implements KeyListener {
 	public void action() {
 
 		Timer t = new Timer();
-		t.schedule(new TimerTask() {
+		try {
+			t.schedule(new TimerTask() {
 
-			@Override
-			public void run() {
-				num++;
-				Thread th = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					num++;
+					Thread th = new Thread(new Runnable() {
 
-					@Override
-					public void run() {
-						shoot();
-						repaint();
-					}
+						@Override
+						public void run() {
+							shoot();
+							repaint();
+						}
 
-				});
-				th.start();
-			}
-		}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
+					});
+					th.start();
+				}
+			}, Constants.TIMER_DELAY, Constants.TIMER_PERIOD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 发射弹药
@@ -160,6 +165,7 @@ public class Layout extends JPanel implements KeyListener {
 
 	private void moveTank(Tank t) {
 		ai.move(t);
+		ai.shot(t);
 		boolean p = false;
 		// for (int i = 0; i < tanks.size(); i++) {
 		// if (this.i.peng(t, tanks.get(i))) {
@@ -168,11 +174,8 @@ public class Layout extends JPanel implements KeyListener {
 		// }
 		// }
 		if (i.out(t, this) || p) {
-			t.setX(t.getOx());
-			t.setY(t.getOy());
+			t.setDirect(-t.getDirect());
 		} else {
-			t.setOx(t.getX());
-			t.setOy(t.getY());
 		}
 	}
 
@@ -230,9 +233,9 @@ public class Layout extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		if (pressKey == e.getKeyCode())
 			h.setMoving(false);
-		// if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-		// h.isShot = false;
-		// }
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			h.setShot(false);
+		}
 	}
 
 }
