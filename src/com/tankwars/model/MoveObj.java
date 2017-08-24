@@ -118,5 +118,26 @@ public abstract class MoveObj {
 		}
 
 	}
+	
+	public void rMove() {
+		switch (direct) {
+		case Constants.UP:
+			y -= -speed;
+			break;
+		case Constants.DOWN:
+			y += -speed;
+			break;
+		case Constants.LIFT:
+			x -= -speed;
+			break;
+		case Constants.RIGHT:
+			x += -speed;
+			break;
+
+		default:
+			
+			break;
+		}
+	}
 
 }
