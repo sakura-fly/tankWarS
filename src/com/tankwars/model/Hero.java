@@ -10,6 +10,16 @@ public class Hero extends Tank {
 		direct = Constants.UP;
 		isMoving = false;
 	}
+	
+	private int hp = Constants.HERO_HP;
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 
 	public Hero() {
 		super();

@@ -75,7 +75,9 @@ public class Layout extends JPanel implements KeyListener {
 		for (int i = 0; i < tBullets.size(); i++) {
 			Bullet b = tBullets.get(i);
 			if (this.i.duang(b, h)) {
-				System.out.println("我要死了!!!!!!!!");
+				int hp = h.getHp();
+				h.setHp(--hp);
+				System.out.println("要死了!!!!!!!!");
 				tBullets.remove(b);
 			}
 		}
@@ -86,15 +88,15 @@ public class Layout extends JPanel implements KeyListener {
 		for (int i = 0; i < tanks.size(); i++) {
 			Tank t = tanks.get(i);
 			t.doDraw(g);
-			// moveTank(t);
-			// for (int j = 0; j < hBullets.size(); j++) {
-			// Bullet b = hBullets.get(j);
-			// if (this.i.duang(b, t)) {
-			// hBullets.remove(b);
-			// tanks.remove(t);
-			// }
-			//
-			// }
+			moveTank(t);
+			for (int j = 0; j < hBullets.size(); j++) {
+				Bullet b = hBullets.get(j);
+				if (this.i.duang(b, t)) {
+					hBullets.remove(b);
+					tanks.remove(t);
+				}
+
+			}
 		}
 	}
 
@@ -107,6 +109,13 @@ public class Layout extends JPanel implements KeyListener {
 				bullets.remove(hb);
 			}
 		}
+	}
+
+	private void died() {
+//		if (h.getHp() <= 0) {
+//			stat = Constants.GAME_STAT_OVER;
+//			System.out.println("真死了");
+//		}
 	}
 
 	public void action() {
@@ -124,6 +133,7 @@ public class Layout extends JPanel implements KeyListener {
 							num = (++num % 100000000);
 							shoot();
 							repaint();
+							died();
 						}
 
 					});
@@ -174,23 +184,7 @@ public class Layout extends JPanel implements KeyListener {
 				h.rMove();
 			}
 		}
-		// for (int i = 0; i < tanks.size(); i++) {
-		// Tank t = tanks.get(i);
-		// if (this.i.peng(h, t)) {
-		// t.setX(t.getOx());
-		// t.setY(t.getOy());
-		// }
-		// }
-
-		// if (i.out(h, this) || p) {
-		// h.setX(h.getOx());
-		// h.setY(h.getOy());
-		// } else {
-		// h.setOx(h.getX());
-		// h.setOy(h.getY());
 	}
-
-	// }
 
 	@Override
 	public void keyTyped(KeyEvent e) {

@@ -36,7 +36,7 @@ public class Constants {
 	public static final int TANK_DISTANCE = 90;// 初始坦克之间的距离
 
 	public static final int TIMER_DELAY = 10;
-	public static final int TIMER_PERIOD = 1;
+	public static final int TIMER_PERIOD = 3;
 
 	public static final int BULLET_JG = 20;
 
@@ -56,5 +56,7 @@ public class Constants {
 	public static final int RIGHT_KEY = KeyEvent.VK_D;
 	
 	public static final int SHOT_KEY = KeyEvent.VK_SPACE;
+	
+	public static final int HERO_HP = 5;
 
 }
