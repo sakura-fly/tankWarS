@@ -198,25 +198,43 @@ public class Layout extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) {
+		switch (e.getKeyCode()) {
+		case Constants.UP_KEY:
 			h.setMoving(true);
 			h.setDirect(Constants.UP);
 			pressKey = e.getKeyCode();
-		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			h.setMoving(true);
-			h.setDirect(Constants.RIGHT);
-			pressKey = e.getKeyCode();
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			break;
+		case Constants.DOWN_KEY:
 			h.setMoving(true);
 			h.setDirect(Constants.DOWN);
 			pressKey = e.getKeyCode();
-		} else if (e.getKeyCode() == KeyEvent.VK_A) {
+			break;
+		case Constants.LIFT_KEY:
 			h.setMoving(true);
 			h.setDirect(Constants.LIFT);
 			pressKey = e.getKeyCode();
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			h.setShot(true);
+			break;
+		case Constants.RIGHT_KEY:
+			h.setMoving(true);
+			h.setDirect(Constants.RIGHT);
+			pressKey = e.getKeyCode();
+			break;
+		case Constants.SHOT_KEY:
+			switch (stat) {
+			case Constants.GAME_STAT_READY:
+				stat = Constants.GAME_STAT_LIVE;
+				break;
+			case Constants.GAME_STAT_LIVE:
+				h.setShot(true);
+				break;
+
+			default:
+				break;
+			}
+			break;
+
+		default:
+			break;
 		}
 	}
 
