@@ -89,6 +89,15 @@ public class Layout extends JPanel implements KeyListener {
 			Tank t = tanks.get(i);
 			t.doDraw(g);
 			moveTank(t);
+			for (int j = 0; j < tanks.size(); j++) {
+				if(j != i){
+					Tank tt = tanks.get(j);
+					if(this.i.peng(t, tt)){
+						t.rMove();
+						tt.rMove();
+					}
+				}
+			}
 			for (int j = 0; j < hBullets.size(); j++) {
 				Bullet b = hBullets.get(j);
 				if (this.i.duang(b, t)) {
