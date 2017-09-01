@@ -2,6 +2,8 @@ package com.tankwar.model;
 
 import com.tankwar.util.MoveConstant;
 
+import java.awt.*;
+
 public abstract class MovingModel {
 
     protected int x;
@@ -11,6 +13,22 @@ public abstract class MovingModel {
     protected int hight;
     protected int direct = MoveConstant.DIRECT_DOWN;
     protected boolean isRun = true;
+    protected Color color;
+
+    public MovingModel(int x, int y, Color color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
+    public Color getColor() {
+
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public int getDirect() {
         return direct;
