@@ -8,7 +8,7 @@ public class Run {
 
     public static void main(String[] args) {
         Layout layout = new Layout();
-        layout.setSize(300,400);
+//        layout.setSize(300,400);
         JFrame jFrame = new JFrame("坦克大战");
         jFrame.setSize(300,400);
         jFrame.add(layout);

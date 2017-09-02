@@ -21,6 +21,10 @@ public abstract class MovingModel {
         this.color = color;
     }
 
+    public MovingModel() {
+
+    }
+
     public Color getColor() {
 
         return color;

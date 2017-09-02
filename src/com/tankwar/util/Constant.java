@@ -4,6 +4,6 @@ public class Constant {
 
 
 
-
+    public static final  int SPEED_BULLET  = 3;
 
 }
