@@ -12,7 +12,7 @@ public abstract class MovingModel {
     protected int with;
     protected int hight;
     protected int direct = MoveConstant.DIRECT_DOWN;
-    protected boolean isRun = true;
+    protected boolean isMoving = true;
     protected Color color;
 
     public MovingModel(int x, int y, Color color) {
@@ -42,12 +42,12 @@ public abstract class MovingModel {
         this.direct = direct;
     }
 
-    public boolean isRun() {
-        return isRun;
+    public boolean isMoving() {
+        return isMoving;
     }
 
-    public void setRun(boolean run) {
-        isRun = run;
+    public void setMoving(boolean moving) {
+        isMoving = moving;
     }
 
     public void setX(int x) {
@@ -118,19 +118,19 @@ public abstract class MovingModel {
 
 
     public void move() {
-        if (isRun) {
+        if (isMoving) {
             switch (direct) {
                 case MoveConstant.DIRECT_DOWN:
-                    x += speed;
+                    y  += speed;
                     break;
                 case MoveConstant.DIRECT_UP:
-                    x -= speed;
-                    break;
-                case MoveConstant.DIRECT_LIFT:
                     y -= speed;
                     break;
+                case MoveConstant.DIRECT_LIFT:
+                    x -= speed;
+                    break;
                 case MoveConstant.DIRECT_RIGHT:
-                    y += speed;
+                    x += speed;
                     break;
 
             }
@@ -140,16 +140,16 @@ public abstract class MovingModel {
     public void back() {
         switch (direct) {
             case MoveConstant.DIRECT_DOWN:
-                x += -speed;
+                y += -speed;
                 break;
             case MoveConstant.DIRECT_UP:
-                x -= -speed;
-                break;
-            case MoveConstant.DIRECT_LIFT:
                 y -= -speed;
                 break;
+            case MoveConstant.DIRECT_LIFT:
+                x -= -speed;
+                break;
             case MoveConstant.DIRECT_RIGHT:
-                y += -speed;
+                x += -speed;
                 break;
 
         }
